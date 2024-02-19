@@ -1,3 +1,10 @@
+/*TODO:
+ * Add Crouching (reduce speed, height, and disable jumping)
+ * Add mouse rotation (check look at)
+ * Add stamina system for sprint
+ * Update collission detection for enemies (and maybe walls?)
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,6 +65,7 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
+        //Implemented a simple sprint mechanic that doubles run speed
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             moveSpeed *= runSpeedMult;
@@ -67,7 +75,6 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed /= runSpeedMult;
         }
-
     }
 
     private void Jump()
