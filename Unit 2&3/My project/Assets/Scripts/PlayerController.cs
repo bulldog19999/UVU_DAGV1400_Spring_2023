@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //Making private variables for movement and force, using [SerializeField] to allow them to be edited in unity, like a public variable
+    [SerializeField]
+    private float moveSpeed = 5.0f;
+    [SerializeField]
+    private float jumpForce = 5.0f;
+    [SerializeField]
+    private float gravity = 9.81f;
+
+    private CharacterController controller;
+    private Vector3 moveDirection;
+    private bool isJumping = false;
+
     void Start()
     {
-        
+        controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
