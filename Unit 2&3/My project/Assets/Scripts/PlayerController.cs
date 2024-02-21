@@ -1,8 +1,5 @@
 /*TODO:
- * Add Crouching (reduce speed, height, and disable jumping)
- * Add mouse rotation (check look at)
- * Add stamina system for sprint
- * Update collission detection for enemies (and maybe walls?)
+ * Add stamina system for sprint - ?
  */
 
 using System.Collections;
@@ -11,23 +8,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //Making private variables for movement and force, using [SerializeField] to allow them to be edited in unity, like a public variable
+    //Making private variables for movement, force, and rotation using [SerializeField] to allow them to be edited in unity, like a public variable
     //Removed Gravity Variable, Global gravity is preset to -9.81 in project settings, will componsate by editing mass of cube in hierarchy
     [SerializeField]
     private float moveSpeed = 5.0f;
     [SerializeField]
+    private float rotationSpeed = 5.0f;
+    [SerializeField]
     private float jumpForce = 300.0f;
     [SerializeField]
-    private float runSpeedMult = 3.0f;
+    private float runSpeedMult = 2.0f;
 
+    //Instantiating Components, we will store the player objects CharacterController and RigidBody on start
     private CharacterController controller;
     private Rigidbody rb;
 
-    private Vector3 moveDirection;
     private bool isJumping = false;
+    private bool isSprinting = false;
+    private bool isCrouched = false;
 
     void Start()
     {
+        //Store Player's Controller and rigid body, anything else we want to use would be declared here
         controller = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
     }
@@ -35,6 +37,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Get Horizontal and vertical axis
+        //By default for mouse and keyboard it's Mouse X and Mouse Y... up and down rotation (Y movement) occurs around the X axis,
+        //Left and right rotation(Mouse X) occurs along the Y axis, added a negative to Mouse Y input to inverse controls: up = up, down = down
+        float xRotation = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+        float yRotation = -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
+        transform.Rotate(yRotation, xRotation, 0);
+        
         if(Input.GetKey(KeyCode.W))
         {
             //Three things hapenning:
@@ -52,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.right * -moveSpeed * Time.deltaTime);
+            transform.Translate(-Vector3.right * moveSpeed * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.D))
@@ -62,33 +71,46 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Jump();
+            if (!isJumping && !isCrouched)
+            {
+                Jump();
+            }
         }
 
-        //Implemented a simple sprint mechanic that doubles run speed
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if(Input.GetKeyDown(KeyCode.LeftShift))
         {
             moveSpeed *= runSpeedMult;
+            isSprinting = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if(Input.GetKeyUp(KeyCode.LeftShift)) 
         {
             moveSpeed /= runSpeedMult;
+            isSprinting = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            moveSpeed /= runSpeedMult;
+            controller.height /= 2f;
+            isCrouched = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            moveSpeed *= runSpeedMult;
+            controller.height *= 2f;
+            isCrouched = false;
+        }
+
     }
 
     private void Jump()
     {
         //By default, the object is not jumping.
-        //Will be adding a conditional to only allow jumping when colliding with the floor
-        //Need to add a collision check for the floor to represent a finished jump
         //Note, physics gets wonky and can cause the cube to unintentionally rotate
-
-        if(!isJumping)
-        {
-            rb.AddForce(Vector3.up * jumpForce);
-            isJumping = true;
-        }
+        rb.AddForce(Vector3.up * jumpForce);
+        isJumping = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -97,6 +119,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Collison with floor");
             isJumping = false;
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Collison with enemy");
         }
     }
 }
