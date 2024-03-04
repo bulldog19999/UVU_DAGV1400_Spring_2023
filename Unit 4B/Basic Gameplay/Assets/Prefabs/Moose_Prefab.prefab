@@ -436,8 +436,9 @@ GameObject:
   - component: {fileID: 8032940590463624110}
   - component: {fileID: 460011531611137380}
   - component: {fileID: 4928235108658723657}
+  - component: {fileID: 8029046718756375375}
   m_Layer: 0
-  m_Name: Animal_Moose_01
+  m_Name: Moose_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,6 +503,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
+--- !u!114 &8029046718756375375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573044177149355730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d5f4a6ff8ce8145b09787f00457d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6850799999624475966
 GameObject:
   m_ObjectHideFlags: 0
