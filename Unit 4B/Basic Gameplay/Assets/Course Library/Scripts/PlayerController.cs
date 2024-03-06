@@ -1,4 +1,3 @@
-//TODO: Continue from 2.3.4
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float rangeLimit;
     public GameObject projectilePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        speed = 10f;
-        rangeLimit = 10f;
+        speed = 20f;
+        rangeLimit = 20f;
 
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
         

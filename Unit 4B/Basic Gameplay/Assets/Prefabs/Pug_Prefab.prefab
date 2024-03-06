@@ -726,6 +726,7 @@ GameObject:
   - component: {fileID: 8877687205627079669}
   - component: {fileID: 2910943654312937833}
   - component: {fileID: 7688416070412069229}
+  - component: {fileID: 7252751164245051749}
   m_Layer: 0
   m_Name: Pug_Prefab
   m_TagString: Untagged
@@ -852,6 +853,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17714775, y: 0.26328918, z: 0.30579987}
   m_Center: {x: 0.0033926875, y: 0.06583704, z: 0.025815392}
+--- !u!114 &7252751164245051749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152331708772146759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb9adfcc15260c46a6a45f4969425ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1288423990961561291
 GameObject:
   m_ObjectHideFlags: 0
