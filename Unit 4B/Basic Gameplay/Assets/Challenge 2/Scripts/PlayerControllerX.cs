@@ -1,6 +1,4 @@
-﻿//TODO: Make counter/timer for 4 seconds -> invokerepeating() doesn't feel like a good fit for this
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +17,6 @@ public class PlayerControllerX : MonoBehaviour
         {
             Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
             canSpawn = false;
-            Debug.Log("Cannot SPawn");
             countDown();
 
         }
@@ -32,12 +29,10 @@ public class PlayerControllerX : MonoBehaviour
             if (spawnTimer > 0.0f)
             {
                 spawnTimer -= Time.deltaTime;
-                //Debug.Log(spawnTimer);
             }
             if (spawnTimer <= 0.0f)
             {
                 spawnTimer = 100.0f;
-                Debug.Log("Countdown Completed");
                 canSpawn = true;
             }
         }

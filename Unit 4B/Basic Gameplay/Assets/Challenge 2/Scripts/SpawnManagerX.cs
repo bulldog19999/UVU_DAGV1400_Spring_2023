@@ -38,7 +38,6 @@ public class SpawnManagerX : MonoBehaviour
     {
         int intervalUpdate = Random.Range(3, 6);
         spawnInterval = (float)intervalUpdate;
-        Debug.Log("Interval Time: " +  spawnInterval);
     }
 
 }
