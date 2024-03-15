@@ -8,8 +8,9 @@ public class PlayerController : MonoBehaviour
 
     public float jumpForce = 10;
     public float gravityModifier;
+    public bool gameOver = false;
 
-    public bool isJumping = false;
+    private bool isJumping = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && isJumping == false)
+        if(Input.GetKeyDown(KeyCode.Space) && isJumping == false && gameOver == false)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); //Adding , ForceMode.Impulse to add force instantainiously instead of over time
             isJumping = true;
@@ -29,6 +30,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        isJumping = false;
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isJumping = false;
+        }
+        else if(collision.gameObject.CompareTag("Obstacle"))
+        {
+            gameOver = true;
+            Debug.Log("Game Over");
+        }
     }
 }
