@@ -89,10 +89,8 @@ public class PlayerController : MonoBehaviour
             {
                 spawnProjectile();
             }
-
+            
         }
-        
-
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -112,12 +110,13 @@ public class PlayerController : MonoBehaviour
             gameOver = true;
         }
     }
-
+    
     void spawnProjectile()
     {        
         Debug.Log("Shooten time");
         Instantiate(projectile, transform.position + new Vector3(0, 0, 4), transform.rotation);
     }
+    
 
     IEnumerator sprintCoroutine()
     {

@@ -26,7 +26,4 @@ public class Projectile : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-
-    
-
 }
