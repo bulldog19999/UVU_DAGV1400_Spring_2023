@@ -46,4 +46,13 @@ public class PlayerController : MonoBehaviour
         Instantiate(projectilePrefab, transform.position + new Vector3(0, 0, 2), projectilePrefab.transform.rotation);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Powerup"))
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Powered Up");
+        }
+    }
+
 }
