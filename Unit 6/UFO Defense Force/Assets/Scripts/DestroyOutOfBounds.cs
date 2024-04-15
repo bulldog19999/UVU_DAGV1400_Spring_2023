@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyOutOfBounds : MonoBehaviour
 {
-    private float zLimit = 22f; 
+    private float zLimit = 30f; 
 
     // Update is called once per frame
     void Update()
