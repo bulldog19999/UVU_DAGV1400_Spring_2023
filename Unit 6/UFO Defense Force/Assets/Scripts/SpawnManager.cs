@@ -13,12 +13,13 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         EnemySpawner();
+        InvokeRepeating("powerupSpawn", 1.0f, 6.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine("powerupSpawn");
+        
     }
 
     void EnemySpawner()
@@ -30,9 +31,8 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    IEnumerator powerupSpawn()
+    void powerupSpawn()
     {
-        yield return new WaitForSeconds(10);
         Instantiate(powerupPrefab, new Vector3(Random.Range(-xLimit, xLimit), .8f, 20), powerupPrefab.transform.rotation);
     }
 }
