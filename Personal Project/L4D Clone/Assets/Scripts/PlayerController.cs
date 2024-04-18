@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public GameObject projectile;
-    
+
     public float verticalInput;
     public float horizontalInput;
     public float speed = 20.0f;
