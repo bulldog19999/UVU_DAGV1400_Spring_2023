@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameObject projectile;
+    private Animator playerAnim;
 
     public float verticalInput;
     public float horizontalInput;
@@ -17,13 +18,14 @@ public class PlayerController : MonoBehaviour
     private float zUpperLimit = 115.0f;
     private bool gameOver = false;
     private bool isSprinting = false;
+    private bool isJumping = false;
 
     //private bool isJumping = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,8 @@ public class PlayerController : MonoBehaviour
         if (!gameOver) {
             verticalInput = Input.GetAxis("Vertical");
             horizontalInput = Input.GetAxis("Horizontal");
+
+            playerAnim.SetFloat("Forward", verticalInput);
 
             transform.Translate(Vector3.forward * verticalInput * speed * Time.deltaTime);
             transform.Rotate(Vector3.up * horizontalInput * turnSpeed * Time.deltaTime);
@@ -44,8 +48,9 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = new Vector3(-xLimit, transform.position.y, transform.position.z);
             }
+
             //If height changes and the player is not jumping, assume bug and this is the check to fix it
-            if (transform.position.y != 3.89f)
+            if (transform.position.y > 0.89f && !isJumping)
             {
                 transform.position = new Vector3(transform.position.x, 3.89f, transform.position.z);
             }
