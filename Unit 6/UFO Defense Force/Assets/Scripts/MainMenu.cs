@@ -7,10 +7,10 @@ public class MainMenu : MonoBehaviour
 {
     public int sceneToLoad;
     
-    // Start is called before the first frame update
-    void Start()
+    public void StartGame()
     {
         SceneManager.LoadScene(sceneToLoad);  //Loads a specified scene, can load either using an index or a name (string)
+        Debug.Log("New Scene Loaded");
     }
 
     public void quitGame()
