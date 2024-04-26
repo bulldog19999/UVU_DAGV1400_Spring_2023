@@ -155,9 +155,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 377216002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -488, y: 187}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 49, y: -35}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &192102651
@@ -189,8 +189,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4284866599
+  m_fontColor: {r: 0.15312389, g: 0.8773585, b: 0.3963933, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -875,9 +875,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014b71a9250f5e24dafda779783c54ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 2707495919344822895, guid: faf7d1f55d5313b44a765996bb2a03ca, type: 3}
   horizontalInput: 0
   speed: 30
-  projectilePrefab: {fileID: 2707495919344822895, guid: faf7d1f55d5313b44a765996bb2a03ca, type: 3}
 --- !u!54 &1660912940
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1077,8 +1077,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

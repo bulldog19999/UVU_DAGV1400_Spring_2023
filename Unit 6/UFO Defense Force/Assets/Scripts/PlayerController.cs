@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject projectilePrefab;
+
     public float horizontalInput;
     public float speed;
 
     private int movementLimit = 22;
-
-    [SerializeField] private GameObject projectilePrefab;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -48,11 +42,24 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Increase speed when colliding with a powerup
         if(other.CompareTag("Powerup"))
         {
             Destroy(other.gameObject);
-            Debug.Log("Powered Up");
+            increaseSpeed();
         }
+    }
+
+    private void increaseSpeed()
+    {
+        StartCoroutine("powerupDuration");  //Begins the countdown to return speed to normal
+        speed *= 1.5f;
+    }
+
+    IEnumerator powerupDuration()
+    {
+        yield return new WaitForSeconds(3);
+        speed /= 1.5f;
     }
 
 }

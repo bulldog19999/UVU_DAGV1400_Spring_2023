@@ -5,7 +5,7 @@ using UnityEngine;
 public class DetectCollision : MonoBehaviour
 {
     public ScoreManager scoreManager; //Store ref to store manager
-    public GameManager gameManager;   
+    public GameManager gameManager;   //ref to game manager
 
     public int scoreToGive;
 
@@ -18,12 +18,16 @@ public class DetectCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Detected");
-        scoreManager.IncreaseScore(scoreToGive); //Increase score    
-        Destroy(gameObject);
-        Destroy(other.gameObject);
+        //Only destroy enemies when they collide with a projecile, prevents unintentional destruction from overlaps
+        if(gameObject.CompareTag("Enemy") && (other.CompareTag("Projectile")))
+        {
+            scoreManager.IncreaseScore(scoreToGive); //Increase score    
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
 
-        if(other.gameObject.CompareTag("Player"))
+
+        if (other.gameObject.CompareTag("Player")) //end game when enemy collides with player
         {
             gameManager.isGameOver = true;
         }
