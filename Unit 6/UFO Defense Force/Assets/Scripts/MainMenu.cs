@@ -5,7 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public AudioClip clip;
+    private SoundManager soundManager;
+    
     public int sceneToLoad;
+
+    void Start()
+    {
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
+    }
 
     public void StartGame()
     {
@@ -15,6 +23,7 @@ public class MainMenu : MonoBehaviour
 
     public void quitGame()
     {
+        soundManager.playSound(clip);
         Application.Quit();
         Debug.Log("Successfully Exited");
     }
