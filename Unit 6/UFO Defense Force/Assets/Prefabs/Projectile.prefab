@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 552334172434082206}
   - component: {fileID: 4028030741053258352}
   - component: {fileID: 5576179969219899592}
-  - component: {fileID: -7696689886170243384}
   - component: {fileID: -4833407523500986830}
   m_Layer: 0
   m_Name: Projectile
@@ -136,19 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616bc66933149c04e875947fd99d4236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-7696689886170243384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2707495919344822895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8b4b901f99ea89459abf050f001eed1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreManager: {fileID: 0}
+  penalty: 25
 --- !u!54 &-4833407523500986830
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public int sceneToLoad;
-    
+
     public void StartGame()
     {
         SceneManager.LoadScene(sceneToLoad);  //Loads a specified scene, can load either using an index or a name (string)

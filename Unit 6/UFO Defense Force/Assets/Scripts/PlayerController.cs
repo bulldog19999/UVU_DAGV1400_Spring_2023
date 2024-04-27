@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip shootingSound;
+    public AudioClip startSound;
+    private AudioSource playerAudio;
     [SerializeField] private GameObject projectilePrefab;
 
     public float horizontalInput;
     public float speed;
 
     private int movementLimit = 22;
+
+    void Awake()
+    {
+        playerAudio = GetComponent<AudioSource>();
+        playerAudio.PlayOneShot(startSound, 0.5f);  //Easier to play audio here than to deal with the main menu.
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -31,6 +41,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             shoot();
+            playerAudio.PlayOneShot(shootingSound, 1.0f);
         }
 
     }
