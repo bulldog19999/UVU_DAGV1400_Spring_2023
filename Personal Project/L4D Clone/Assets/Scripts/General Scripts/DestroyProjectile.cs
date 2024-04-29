@@ -18,8 +18,7 @@ public class DestroyProjectile : MonoBehaviour
 
     IEnumerator destroyProjectileOnTimerRoutine()
     {
-        yield return new WaitForSeconds(2.5f);
-        Debug.Log("Destroy");
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 }
