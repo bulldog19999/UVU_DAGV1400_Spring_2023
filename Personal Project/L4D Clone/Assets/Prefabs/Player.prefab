@@ -1572,7 +1572,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5302171049257379206}
   serializedVersion: 4
-  m_Mass: 100
+  m_Mass: 20
   m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2783,6 +2783,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8789470055407419315}
+  - component: {fileID: 6283601621306005379}
   m_Layer: 0
   m_Name: Blaster
   m_TagString: Untagged
@@ -2799,12 +2800,25 @@ Transform:
   m_GameObject: {fileID: 9177557898366133191}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7656564, z: 0.56693715}
+  m_LocalPosition: {x: 0, y: 0.7656564, z: 0.531}
   m_LocalScale: {x: 0.29223529, y: 0.29223529, z: 0.29223529}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4089110377561062547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6283601621306005379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9177557898366133191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39cc93035b634a4da866abc3e2cb538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 1775869100429899863, guid: cfd20734fd5611c46b123cfd1a95f306, type: 3}
 --- !u!1001 &7281021532669534314
 PrefabInstance:
   m_ObjectHideFlags: 0

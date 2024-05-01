@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("You Lose");
             gameManager.gameOver = true;
+            gameManager.isDead = true;
             playerAnim.GetComponent<Animator>().enabled = false;
         }
 
@@ -111,7 +112,6 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator sprintCoroutine()
     {
-        //Need to find a way to stop/interupt this method. Not sure if the if statement is good enough
         speed *= 1.5f;
         yield return new WaitForSeconds(3.5f);
         

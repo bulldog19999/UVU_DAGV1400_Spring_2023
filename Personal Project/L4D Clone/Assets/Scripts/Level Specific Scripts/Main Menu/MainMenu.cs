@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
-public class GameManager : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
-    public bool gameOver;
-
-
-    private void Awake()
-    {
-        gameOver = false;
-    }
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +18,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
