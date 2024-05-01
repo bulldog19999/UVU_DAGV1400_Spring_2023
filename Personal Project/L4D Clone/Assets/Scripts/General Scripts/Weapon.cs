@@ -12,17 +12,10 @@ public class Weapon : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Enemy") && player.isAttacking)
         {
-            Debug.Log("Here");
             Destroy(collision.gameObject);
         }
     }

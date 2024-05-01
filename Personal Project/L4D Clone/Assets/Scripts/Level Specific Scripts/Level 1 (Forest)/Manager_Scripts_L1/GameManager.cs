@@ -5,12 +5,12 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    private GameObject winScreen;
+    private GameObject loseScreen;
+
     public bool gameOver;
     public bool isDead;
 
-    private GameObject winScreen;
-    private GameObject loseScreen;
-    // Start is called before the first frame update
     void Awake()
     {
         gameOver = false;
@@ -26,13 +26,11 @@ public class GameManager : MonoBehaviour
     {
         if (gameOver && isDead)
         {
-            Debug.Log("Activate Game Over Screen");
             loseScreen.gameObject.SetActive(true);
         }
 
         if (gameOver && !isDead)
         {
-            Debug.Log("Activate victory Screen");
             winScreen.gameObject.SetActive(true);
         }
     }

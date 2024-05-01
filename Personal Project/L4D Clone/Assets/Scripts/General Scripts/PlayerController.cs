@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     private Animator playerAnim;
     private Rigidbody rb;
-    private Blaster blaster;
+    private Blaster blaster;    //figuring out if i want to keep or not, blaster code is currently functional
 
     public float verticalInput;
     public float horizontalInput;
@@ -37,11 +37,13 @@ public class PlayerController : MonoBehaviour
             verticalInput = Input.GetAxis("Vertical");
             horizontalInput = Input.GetAxis("Horizontal");
 
+            //This is used to help control animation state by connecting vertical movement with "Forward" parameter
             playerAnim.SetFloat("Forward", verticalInput);
 
             transform.Translate(Vector3.forward * verticalInput * speed * Time.deltaTime);
             transform.Rotate(Vector3.up * horizontalInput * turnSpeed * Time.deltaTime);
 
+            //x limits keep the player from falling out of the world... although this won't work on different sized levels
             if (transform.position.x > xLimit)
             {
                 transform.position = new Vector3(xLimit, transform.position.y, transform.position.z);
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
                 isSprinting = true;
             }
 
+            //This basically functions as (Sprint by holding shift), sprint is not a toggle due to personal preference
             if(Input.GetKeyUp(KeyCode.LeftShift) && isSprinting)
             {
                 StopCoroutine("lastCoroutine");
@@ -70,11 +73,9 @@ public class PlayerController : MonoBehaviour
                 //blaster.spawnProjectile();
                 if(!isAttacking)
                 {
-                    isAttacking = true;
-                    playerAnim.SetBool("isAttacking", true);
-                    Invoke("StopAttack", 1.5f);
-                    Debug.Log(isAttacking);
+                    StartCoroutine("Attack");
                 }
+
             }
 
             if(Input.GetKeyDown(KeyCode.Space))
@@ -89,14 +90,16 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        //Having the check for attacking prevents the melee character from getting killed right away
+        //Attacking relies on the sword (paranted to the player) colliding with zombies
+        if (collision.gameObject.CompareTag("Enemy") && !isAttacking)
         {
-            //Debug.Log("You Lose");
-            //gameManager.gameOver = true;
-            //gameManager.isDead = true;
-            //playerAnim.GetComponent<Animator>().enabled = false;
+            gameManager.gameOver = true;
+            gameManager.isDead = true;
+            playerAnim.GetComponent<Animator>().enabled = false;
         }
 
+        //prevents double jumps
         if(collision.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
@@ -107,7 +110,6 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Finish"))
         {
-            Debug.Log("You Win");
             gameManager.gameOver = true;
             playerAnim.GetComponent<Animator>().enabled = false;
         }
@@ -118,11 +120,13 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(new Vector3(0, 200f, 0), ForceMode.Impulse);
     }
 
-    private void Attack()
+    //Modifies isAttacking bool and plays animation. Also calls the helper function StopAttack() to reset variables to original values
+    IEnumerator Attack()
     {
         isAttacking = true;
         playerAnim.SetBool("isAttacking", true);
-        Invoke("StopAttack", 1.5f);
+        yield return new WaitForSeconds(1.5f);
+        StopAttack();
     }
 
     private void StopAttack()
@@ -145,6 +149,5 @@ public class PlayerController : MonoBehaviour
             speed /= 1.5f;
             isSprinting = false;
         }
-        
     }
 }
