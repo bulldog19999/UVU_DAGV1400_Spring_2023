@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput;
     public float speed = 20.0f;
     public float turnSpeed = 10.0f;
+    public bool isAttacking = false;
 
     private float xLimit = 35.0f;
     private bool isSprinting = false;
@@ -66,7 +67,14 @@ public class PlayerController : MonoBehaviour
             
             if (Input.GetMouseButtonDown(0))
             {
-                blaster.spawnProjectile();
+                //blaster.spawnProjectile();
+                if(!isAttacking)
+                {
+                    isAttacking = true;
+                    playerAnim.SetBool("isAttacking", true);
+                    Invoke("StopAttack", 1.5f);
+                    Debug.Log(isAttacking);
+                }
             }
 
             if(Input.GetKeyDown(KeyCode.Space))
@@ -83,10 +91,10 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("You Lose");
-            gameManager.gameOver = true;
-            gameManager.isDead = true;
-            playerAnim.GetComponent<Animator>().enabled = false;
+            //Debug.Log("You Lose");
+            //gameManager.gameOver = true;
+            //gameManager.isDead = true;
+            //playerAnim.GetComponent<Animator>().enabled = false;
         }
 
         if(collision.gameObject.CompareTag("Ground"))
@@ -110,8 +118,24 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(new Vector3(0, 200f, 0), ForceMode.Impulse);
     }
 
+    private void Attack()
+    {
+        isAttacking = true;
+        playerAnim.SetBool("isAttacking", true);
+        Invoke("StopAttack", 1.5f);
+    }
+
+    private void StopAttack()
+    {
+        playerAnim.SetBool("isAttacking", false);
+        isAttacking = false;
+    }
+
     IEnumerator sprintCoroutine()
     {
+        //Increases speed by half, speed is increased while player is holding down shift
+        //if shift is released early, then speed is returned to normal
+        
         speed *= 1.5f;
         yield return new WaitForSeconds(3.5f);
         
