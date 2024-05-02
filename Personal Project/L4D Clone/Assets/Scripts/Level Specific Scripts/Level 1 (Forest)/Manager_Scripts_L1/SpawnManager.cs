@@ -10,8 +10,9 @@ public class SpawnManager : MonoBehaviour
     private GameManager gameManager;
 
     private int spawnChance;
-    private float spawnDelay = 1.2f;
-    private float spawnInterval = 2.5f;
+    private float spawnDelay = 0.8f;
+    private float spawnInterval = 2.2f;
+
     // Start is called before the first frame update
     void Awake()
     {
